@@ -1,20 +1,12 @@
 """
-Notes :
-- Vérifier respect du PEP8
-
-1) Lecture du fichier CSV
-- Mettre en forme un fichier csv avec les données séparées par une virgule (comma seperated) OK
-- Lire les données OK
-- Afficher les données OK
-
-
+Le programme doit explorer toutes les combinaisons
 """
 
 import csv
 import time
 import math
 
-MAX_BUDGET = 100
+MAX_BUDGET = 500
 
 def show_combinations_number(nb_actions):
     # Calculer le nombre de combinaisons possibles
@@ -66,6 +58,7 @@ def show_combination_details(combination):
 start = time.time()
 with open('forcebrute_dataset.csv', newline='') as csv_file:
     reader = csv.reader(csv_file, delimiter=',')
+    
     actions = []
     for row in reader:
         actions.append(row)
