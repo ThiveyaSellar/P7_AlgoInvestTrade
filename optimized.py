@@ -27,35 +27,40 @@ with open('forcebrute_dataset.csv', newline='') as csv_file:
     reader = csv.reader(csv_file, delimiter=',')
     
     actions = []
+    next(reader)
     for row in reader:
+        row[1] = float(row[1])
+        row[2] = float(row[2])
         actions.append(row)
-    actions = actions[1:]
     nb_actions = len(actions)
     for action in actions:
         action.append(float(action[1]) * float(action[2])/100)
-        action.append((float(action[1]) * float(action[2])/100)/float(action[1])*100)
 
-    actions.sort(key=lambda x: x[-1],reverse=True)
+    # Sort by profit column
+    actions.sort(key=lambda x: x[2],reverse=True)
+    print("--------Liste des actions---------")
+
     for action in actions:
         print(action)
 
-    print("-----------")
+    print("--------Meilleure liste des actions---------")
 
     total_cost = 0
     total_profit = 0
     i = 0
     selected_actions = []
-    while total_cost <= MAX_BUDGET and i <= 19:
-        if total_cost + float(actions[i][1]) <= MAX_BUDGET:
-            total_cost += float(actions[i][1])
-            total_profit += float(actions[i][3])
+    while total_cost <= MAX_BUDGET and i <= nb_actions-1:
+        if total_cost + actions[i][1] <= MAX_BUDGET:
+            total_cost += actions[i][1]
+            total_profit += actions[i][3]
             selected_actions.append(actions[i])
             i += 1
         else:
-            # Rechercher le bénéfice maximum
             i += 1
-
+            
     for action in selected_actions:
         print(action)
-    print(total_cost)
-    print(total_profit)
+    print(f"Coût total : {total_cost}")
+    print(f"Profit total : {total_profit}")
+    end = time.time()
+    print(f"Temps: {end - start}")
