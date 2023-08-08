@@ -3,7 +3,7 @@
 
 ### Lancer l'algorithme de force brute avec le fichier de 20 actions :
 
-python forcebrute.py csv/forcebrute_dataset.csv  
+````python forcebrute.py csv/forcebrute_dataset.csv````  
 
 ### Lancer l'algorithme optimisé avec le fichier de 20 actions :
 
